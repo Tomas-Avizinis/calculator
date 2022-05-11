@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset = "utf-8">
+    <title> Skaiciuotuvas </title> 
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- <link rel="stylesheet" href="skaiciuotuvas.css">
+    <script src="skaiciuotuvas.js" defer></script> -->
+    
+    <style>
+        * {box-sizing: 
+            border-box;
+            margin: 0px; 
+            padding: 0px;
+        }
+
+        hr {
+            border: 1px solid #777777;
+            opacity: 0.3;
+        }
+
+        #skaiciuotuvas {
+            width: 306px;
+            height: 480px;
+            background-color: #C6C4C2;
+            border-radius: 10px;
+            padding: 40px 10px 10px 10px;
+            margin: 10px auto;
+            box-shadow: 1px 1px 1px 1px #888888;
+        }
+
+        #ekranas {
+            color: #656565;
+            position: relative;
+            margin: 0px auto;
+            width: 270px;
+            height: 130px;
+            background-color: #656565;
+            border: 0.5px double #000000;
+            box-shadow: none;
+            border-radius: 6px;
+            padding: 5px ;
+            font-family: courier;
+            font-size: 28px;
+            transition-property: background-color;
+            transition-duration: 1s;
+        }
+
+        #ekr0eilute {
+            text-align: center;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            padding: 1px;
+            margin-bottom: 10px;
+            background-color: #777777;
+            opacity: 0.4;
+            color: #777777; /* aktyvi spalva bus #d5ffaa; */
+            font-weight:bold;
+        }
+
+        #memoryline {
+            font-weight:lighter;
+            margin-left: 3px;
+        }
+
+        #ekr1eilute, #ekr2eilute, #ekr3eilute {
+            text-align: right;
+            padding-right: 10px;
+            opacity: 0.6;
+            position: relative;
+            font-family: impact; 
+            font-size: 0.9em;
+            height: 30px;
+            /*border: 1px solid #656565;*/
+        }
+
+        #ekr3eilute {
+            opacity: 0.2;
+        }
+
+        #ekr4zenklas {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            opacity: 0.2;
+            font-family: impact; 
+            font-size: 2.2em;
+        }
+
+        #klaviatura {
+            margin-top: 30px;
+        }
+
+        #klaviatura button {
+            width: 18%;
+            height: 40px;
+            font-size: 20px;
+            font-weight: 600;
+            background-color: #999999;
+            color: #ffffff;
+            padding: 2px;
+            border-radius: 5px;
+            margin: 1px;
+            text-decoration: none;
+            outline: none;
+        }
+
+        #klaviatura .memory {
+            background-color: #656565;
+        }
+
+        #klaviatura .skaicius {
+            background-color: #f0f0f0;
+            color: #000000;
+        }
+
+        #klaviatura .on {
+            background-color: #225500; /* ankstesne spalva #225500 */
+            color: #ffffff;
+        }
+
+        #klaviatura button:active {
+            box-shadow: 0 1px #666;
+            transform: translateY(1px);
+        }
+
+        #klaviatura div {
+            margin: 10px;
+        }
+
+        #nustatymai {
+            width: 300px;
+            height: 60px;
+            background-color: #C6C4C2;
+            padding: 15px;
+            border-radius: 10px;
+            padding: 5px 8px;
+            margin: 20px auto;
+            box-shadow: 1px 1px 1px 1px #888888;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #sriftas {
+            width: 60px;
+        }
+
+        #sriftasSmall {
+            margin-left: 20px;
+            font-size: .8em;
+        }
+
+        #sriftasBig {
+            font-size: 1.2em;
+        }
+
+    </style>
+
+  </head>
+
+  <body> 
+    <div id="skaiciuotuvas">
+
+      <div id="ekranas">
+        <p id="ekr0eilute">M
+          <span id="memoryLine">00</span>
+        </p> 
+        <p id="ekr1eilute"> </p>
+        <p id="ekr2eilute"> </p>
+        <hr>
+        <p id="ekr3eilute"> </p>
+        <p id="ekr4zenklas">+</p>
+      </div> <!-- ekranas end-->
+
+      <div id="klaviatura">
+        <div id="row1">
+          <button id="memoryMC" class="memory">MC</button>
+          <button id="memoryMR" class="memory">MR</button>
+          <button id="memoryM-" class="memory">M-</button>
+          <button id="memoryM+" class="memory">M+</button>
+          <button id="on" class="on">ON</button>
+        </div>
+
+        <div id="row2">
+          <button id="sk7" class="skaicius">7</button>
+          <button id="sk8" class="skaicius">8</button>
+          <button id="sk9" class="skaicius">9</button>
+          <button id="dalyba">÷</button>
+          <button id="memoC">C</button>
+        </div>  
+        
+        <div id="row3">
+          <button id="sk4" class="skaicius">4</button>
+          <button id="sk5" class="skaicius">5</button>
+          <button id="sk6" class="skaicius">6</button>
+          <button id="daugyba">x</button>
+          <button id="memoCE">CE</button>          
+        </div>
+        
+        <div id="row4">
+          <button id="sk1" class="skaicius">1</button>
+          <button id="sk2" class="skaicius">2</button>
+          <button id="sk3" class="skaicius">3</button>
+          <button id="atimtis">-</button>
+          <button id="saknis">√</button> 
+        </div>
+
+        <div id="row5">
+          <button id="keistiZenkla">±</button>
+          <button id="sk0" class="skaicius">0</button>
+          <button id="kablelis" class="skaicius">.</button>
+          <button id="sudetis">+</button>
+          <button id="lygybe">=</button> 
+        </div>
+
+      </div> <!-- klaviatura end-->	
+  	</div> <!-- skaiciuotuvas end-->
+
+    <div id="nustatymai">
+      Nustatymai
+      <br>
+      <label>spalva
+        <input type="color" name="spalvyte" value="#14F061" id="spalva">
+      </label>
+      
+      <label>
+        <span id='sriftasSmall'>A</span>
+        <input type="range" name="intervaliuks" min="1" max="5" step="1" value="3" id="sriftas">
+        <span id='sriftasBig'>A</span>
+      </label>
+
+     </div> <!-- nustatymai end-->
+
+  </body>
+  
+  <script>
+        let skaicius = ['0', '0'], eilNr, rezultatas, 
+        aritmZenklas, aritmZenklasNew,
+        veiksmasKorektiskas, pirmasVeiksmas,
+        memorySkaicius = 0,
+        ijungtas = false;
+
+
+        function trinkViska() {
+        skaicius[0] = '0';
+        skaicius[1] = '';
+        eilNr = 0;
+        rezultatas = '';
+        aritmZenklas = '';
+        aritmZenklasNew = '';
+        pirmasVeiksmas = true;
+        veiksmasKorektiskas = false; 
+        rodykEkrane();
+        }
+
+        function ijungti() {
+        let ekranas = document.getElementById('ekranas');
+        if (ijungtas) {
+            ekranas.style.backgroundColor = '#656565';
+            ekranas.style.boxShadow = 'none';
+            ijungtas = false;
+            memorySkaicius = 0;
+            rodykMemory();
+        } else {
+            ekranas.style.backgroundColor = '#d5ffaa'; // ankstesne spalva #d5d6aB
+            ekranas.style.boxShadow = '2px 0px 20px 2px #f5f6dB inset';
+            ijungtas = true;
+        }
+        trinkViska();
+        }
+
+        function nustatymaiSpalva () {
+        let fonoSpalva = document.getElementById('spalva');
+        document.getElementById('skaiciuotuvas').style.backgroundColor = fonoSpalva.value;
+        document.getElementById('nustatymai').style.backgroundColor = fonoSpalva.value;
+        }
+
+        function nustatymaiSrifas () {
+        let mygtukuSriftas = document.getElementById('sriftas');
+        sriftoDydis = mygtukuSriftas.value; 
+        let mygtukai = document.getElementsByTagName('button');
+        let sriftoDDD;
+
+        switch (sriftoDydis) {
+            case '1' : sriftoDDD = '16px'; break;
+            case '2' : sriftoDDD = '18px'; break;
+            case '3' : sriftoDDD = '20px'; break;
+            case '4' : sriftoDDD = '22px'; break;
+            case '5' : sriftoDDD = '24px'; break;
+        } 
+
+        l = mygtukai.length;
+        for (i = 0; i < l; i++) {
+            mygtukai[i].style.fontSize = sriftoDDD;
+        }
+        }
+
+        function rodykEkrane() {
+        document.getElementById('ekr1eilute').textContent = skaicius[0];
+        document.getElementById('ekr2eilute').textContent = skaicius[1];
+        document.getElementById('ekr3eilute').textContent = rezultatas;
+        document.getElementById('ekr4zenklas').textContent = aritmZenklas;
+        }
+
+        function rodykMemory() {
+        let atmintis = document.getElementById('ekr0eilute');
+        if (memorySkaicius != 0 ) {
+            atmintis.style.color = '#d5ffaa';
+            document.getElementById('memoryLine').textContent = memorySkaicius;
+        } else {
+            atmintis.style.color = '#777777';
+        }
+        }
+
+        function rodykKonsoleje() {
+        console.log(skaicius[0], aritmZenklas, skaicius[1], '=' , rezultatas);
+        }
+
+        function tikrinkIrSkaiciuok() { //patikriname ar galime imtis skaiciavimu
+        const aa = parseFloat(skaicius[0]);
+        const bb = parseFloat(skaicius[1]);
+        let cc; //= 'x';
+        
+        if (aritmZenklas == '') {if (!pirmasVeiksmas) {cc = 'paspauskite veiksmą'} }
+        else if (isFinite(aa) && (isFinite(bb) || aritmZenklas == '√')) {
+            if ((aritmZenklas == '√') && (aa < 0)) {
+            cc = 'šaknis iš -'; 
+            veiksmasKorektiskas = false;
+            rodykEkrane();
+            } else if ((aritmZenklas == '/') && (bb == 0)) {
+            cc = 'dalyba iš 0'; rodykEkrane();
+            } else {
+            cc = skaiciuok(aa, bb);
+            }
+        } else {console.log ('a ir b - ne skaičiai')};
+        
+        rezultatas = cc;
+
+        if (isFinite(cc)) { veiksmasKorektiskas = true; } 
+        else {veiksmasKorektiskas = false;
+            console.log ('rezultatas', rezultatas, isFinite(rezultatas));
+        }
+        rodykEkrane();
+        }
+
+
+        function skaiciuok(a, b) { //tik aritmetika, be tikrinimu
+        let c;
+        console.log('funkcija SKAICIUOK (a,b)');
+        switch (aritmZenklas) {
+            case '+': c = a + b; break;
+            case '-': c = a - b; break;
+            case 'x': c = a * b; break;
+            case '÷':
+            if ( b ) { c = a / b; } //b bus "true" jei b nelygus 0,
+            else { c = 'dalyba iš 0'; };
+            break;
+            case "√":
+            if ( a >= 0 ) { c = Math.sqrt(a); }
+            else { c = 'šaknis iš neigiamo'};
+            console.log (`šaknis iš ${a} yra ${c}`);
+            break;
+        }
+        console.log ('F-ja SKAICIUOK:', aritmZenklas, 'a=',a,' b=',b,' rez=',c);
+        return c;
+        }
+
+        function skIvedimas() { //skaiciaus ivedimas po skaitmeni
+        
+        if (eilNr == 1 && aritmZenklas =='') {
+            rezultatas = 'įveskite veiksmą';
+            rodykEkrane();
+            // antrą skaičių rašysime tik jei jau yra įvestas aritmetinis veiksmas
+        } else if ((!pirmasVeiksmas) && (eilNr ==0)) {
+            return;
+            //po I-o veiksmo, vėliau 0 eilutėje rodomi tik gauti rezultatai,
+            // o rašyti ar trinti skaičius leisime tik 1 eilutėje.
+            
+        } else if (skaicius[eilNr] == '0' || skaicius[eilNr] == '') {
+            skaicius[eilNr] = this.textContent;
+        } else if (skaicius[eilNr] == '0.') {
+            skaicius[eilNr] += this.textContent;
+        } else {
+            skaicius[eilNr] += this.textContent;
+        }
+        
+        console.log ('sk.ivedimas. Zenklas=', aritmZenklas, ', eilute=', eilNr, ', pirmasVeiksmas=', pirmasVeiksmas);
+        tikrinkIrSkaiciuok();
+        rodykEkrane();
+        }
+
+        function veiksmoImitacija() { // kas ivyksta paspaudus bet kurį aritmetinį ženklą
+        document.getElementById('ekr4zenklas').textContent = this.textContent;
+        console.log('veiksmoImitacija', this.textContent);
+            
+        aritmZenklasNew = this.textContent;
+
+        if (aritmZenklas =='') { //pirmam veiksmui
+            aritmZenklas = aritmZenklasNew;
+        } else if (veiksmasKorektiskas) { 
+            veiksmoTvirtinimas(); //kitiems veiksmams darome perkelimą
+            aritmZenklas = aritmZenklasNew; 
+        } 
+        
+        tikrinkIrSkaiciuok();
+        console.log ('rezultatas=', rezultatas,'| veiksmas korektiskas=', veiksmasKorektiskas, 'pirmas veiksmas=', pirmasVeiksmas );
+
+        if (aritmZenklasNew == '√' && skaicius[0] >=0 && veiksmasKorektiskas) { //kv.š veiksmas
+            tikrinkIrSkaiciuok();
+            rodykEkrane ();
+            aritmZenklas = aritmZenklasNew;
+        } 
+        
+        if ( pirmasVeiksmas || veiksmasKorektiskas) {
+            eilNr = 1; //keiciame eilute antro skaiciaus rašymui
+        }
+        if (aritmZenklasNew == '√' ) { 
+            eilNr =0; // nekeiciame jei veiksmas √
+        }
+        console.log ('eilNr', eilNr);
+        rodykEkrane();
+        
+        }
+
+        function veiksmoTvirtinimas() {  // rezultato perkėlimas į 1 eilutę
+        if (veiksmasKorektiskas) {
+            skaicius[0] = rezultatas;
+            skaicius[1] = "";
+            rezultatas = "";
+            eilNr = 1;
+            aritmZenklas = "";
+            pirmasVeiksmas = false;
+            veiksmasKorektiskas = false;
+            console.log ('perkelimas3-lygybe');
+            rodykEkrane();
+        }
+        }
+
+
+        function trinkPaskutini() {
+        if ((!pirmasVeiksmas) && (eilNr ==0)) {
+            return;
+            //po I-o veiksmo, vėliau 0 eilutėje rodomi tik gauti rezultatai,
+            // o rašyti ar trinti skaičius leisime tik 1 eilutėje.
+
+        } else {
+            if (skaicius[eilNr] != 0) {
+            skaicius[eilNr] = skaicius[eilNr].slice(0, skaicius[eilNr].length - 1);
+            if (skaicius[eilNr].endsWith(".")) {
+                //kad neliktu gale tik kablelis, nutriname
+                skaicius[eilNr] = skaicius[eilNr].slice(0, skaicius[eilNr].length - 1);
+            }
+            if (skaicius[eilNr] == "-0") {skaicius[eilNr] = "";} 
+            if (skaicius[eilNr] == "0") {skaicius[eilNr] = "";} 
+            if (skaicius[eilNr] == "0.") {skaicius[eilNr] = "";} 
+            if (skaicius[eilNr] == "-") {skaicius[eilNr] = "";}
+            // jei trinant gauname nepilną skaičių, keičiame į tuščią eilute
+            //pagalvoti ar suvienodint eilutes - pirmoje "0" antroje ""?
+            }
+            tikrinkIrSkaiciuok();
+            console.log ('rezultatas po trynimo', rezultatas);
+            rodykEkrane();
+        }
+
+        }
+
+        function keistiZenkla() {
+
+        if (eilNr == 1 && aritmZenklas =='') { //jei nėra aritm ženklo į 1eilutę nieko nevedame
+            rezultatas = 'įveskite veiksmą';
+            rodykEkrane(); 
+
+        } else if ( typeof(skaicius[eilNr]) == 'number' ) { //jei number, tiesiog keičiame ženklą
+            skaicius[eilNr] = - skaicius[eilNr]; 
+        } else if (skaicius[eilNr] != '0') { //jei string, atliekame manipuliacijas
+            if (!skaicius[eilNr].includes('-')) {
+            skaicius[eilNr] = '-' + skaicius[eilNr];
+            } else {
+            skaicius[eilNr] = skaicius[eilNr].slice(1, skaicius[eilNr].length);
+            }
+        }
+        
+        tikrinkIrSkaiciuok();
+        rodykEkrane();
+        }
+
+        function kablIvedimas() {
+
+        if ( typeof(skaicius[eilNr]) == 'number' ) {
+            return;
+        } 
+            // naujai rašomi skaičiai yra string formato,
+            // tad jei skaičius number - funkcijos nevykdysim.
+        
+
+        if (eilNr == 1 && aritmZenklas =='') { //jei nėra aritm ženklo į 1eilutę nieko nevedame
+            rezultatas = 'įveskite veiksmą';
+            rodykEkrane();
+        }  else if ( !(skaicius[eilNr].includes('.')) ) {
+            skaicius[eilNr] += this.textContent;
+        } //patikriname, kad skaičiuje neatsirastų antras kablelis
+
+        if (skaicius[eilNr] == "0" || skaicius[eilNr] == ".") {
+            skaicius[eilNr] = "0."; 
+        }
+        if (skaicius[eilNr] == '-.') {
+            skaicius[eilNr] = "-0.";
+        }
+        tikrinkIrSkaiciuok();
+        rodykEkrane();
+        }
+
+
+        //Veiksmai su atmintimi
+        function memoryClear() {
+        memorySkaicius = 0;
+        rodykMemory();
+        }
+
+        function memoryReturn() {
+        skaicius[eilNr] = memorySkaicius;
+        tikrinkIrSkaiciuok();
+        }
+
+        function memoryMinus() {
+        if (( typeof(rezultatas) == 'number' && rezultatas != 0)) {
+            memorySkaicius -= rezultatas;
+        } else if ( parseFloat(skaicius[0]) != 0) {
+            memorySkaicius -= parseFloat(skaicius[0]);
+        }
+        rodykMemory(); console.log (memorySkaicius);
+        }
+
+        function memoryPlus() {
+        if (( typeof(rezultatas) == 'number' && rezultatas != 0)) {
+            memorySkaicius += rezultatas;
+        } else if ( parseFloat(skaicius[0]) != 0) {
+            memorySkaicius += parseFloat(skaicius[0]);
+        }
+        rodykMemory();
+        }
+
+
+        // MYGTUKAI
+        //ijungimas
+        document.getElementById("on").addEventListener("click", ijungti);
+        //skaiciai
+        document.getElementById("sk0").addEventListener("click", skIvedimas);
+        document.getElementById("sk1").addEventListener("click", skIvedimas);
+        document.getElementById("sk2").addEventListener("click", skIvedimas);
+        document.getElementById("sk3").addEventListener("click", skIvedimas);
+        document.getElementById("sk4").addEventListener("click", skIvedimas);
+        document.getElementById("sk5").addEventListener("click", skIvedimas);
+        document.getElementById("sk6").addEventListener("click", skIvedimas);
+        document.getElementById("sk7").addEventListener("click", skIvedimas);
+        document.getElementById("sk8").addEventListener("click", skIvedimas);
+        document.getElementById("sk9").addEventListener("click", skIvedimas);
+        //aritmetiniai veiksmai
+        document.getElementById("sudetis").addEventListener("click", veiksmoImitacija);
+        document.getElementById("atimtis").addEventListener("click", veiksmoImitacija);
+        document.getElementById("daugyba").addEventListener("click", veiksmoImitacija);
+        document.getElementById("dalyba").addEventListener("click", veiksmoImitacija);
+        document.getElementById("saknis").addEventListener("click", veiksmoImitacija);
+
+        //
+        document.getElementById("memoC").addEventListener("click", trinkViska);
+        document.getElementById("memoCE").addEventListener("click", trinkPaskutini);
+        document.getElementById("keistiZenkla").addEventListener("click", keistiZenkla);
+        document.getElementById("kablelis").addEventListener("click", kablIvedimas);
+        document.getElementById("lygybe").addEventListener("click", veiksmoTvirtinimas);
+
+        // memorySkaicius
+        document.getElementById("memoryMC").addEventListener("click", memoryClear);
+        document.getElementById("memoryMR").addEventListener("click", memoryReturn);
+        document.getElementById("memoryM-").addEventListener("click", memoryMinus);
+        document.getElementById("memoryM+").addEventListener("click", memoryPlus);
+
+        //nustatymai
+        document.getElementById("spalva").addEventListener("input", nustatymaiSpalva);
+        document.getElementById("sriftas").addEventListener("input", nustatymaiSrifas);
+  </script>
+
+</html>
+
